@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <style>
+             body {
+                font-family: Ariel, sans-serif;
+                background: aliceblue;
+                text-align: center;
+                padding: 30px;
+             }
+              
+             h1 {
+                color: navy;
+             }
+
+             input {
+                padding: 8px;
+                margin: 5px;
+                border: 2px solid navy;
+                width: 200px;
+
+             }
+
+             button {
+                background: navy;
+                color: white;
+                padding: 10px 25px;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+             }
+              #timer {
+                color: grey;
+              }
+
+        </style>
+    </head>
+
+     <body>
+        <h1>Lucky Draw!!</h1>
+        <p>Plz enter your name and gueds a number to win!!</p>
+
+        <input type="text" id="name" placeholder="Your Name" reqiured><br>
+        <p id="msg-name"></p>
+
+        <input type="text" id="name" placeholder="Guess a number (1 to 5)" min="1 max="5" reqiured><br>
+        <p id="msg-guess"></p>
+
+        <button onclick="checkForm()">Try my Luck!!!</button>
+        <p id="result"></p>
+        <p id="timer"></p>
+
+        <script>
+
+            var seconds = 0;
+            setInterval(function() {
+            seconds = seconds + 1;
+            document.getElementById("timer").textContent = "You Have Been here for " + seconds + "seconds!"
+            }, 1000);
+
+            function checkForm() {
+                var name = document.getElementById("name").value;
+                var guess = document.getElementById("guess").value;
+                var ok = true;
+
+                if (name == "") {
+                      document.getElementById("msg-name").textContent = "Plz enter your name!";
+                      document.getElementById("msg-name").style.color = "red"; 
+                      ok = false;
+                } else { 
+                    document.getElementById("msg-name").textContent = "great name!";
+                      document.getElementById("msg-name").style.color = "green"; 
+
+                }
+
+                if (guess == "") {
+                      document.getElementById("msg-guess").textContent = "Plz enter your guess!";
+                      document.getElementById("msg-guess").style.color = "red"; 
+                      ok = false;
+                } else { 
+                    document.getElementById("msg-guess").textContent = "Guess saved!";
+                      document.getElementById("msg-guess").style.color = "green"; 
+
+                }
+                 if (ok == true) {
+                    var lucky = Math.floor(Math.random() * 5) + 1;
+                    if (guess == lucky) {
+                        document.getElementById("result").textContent = "You win," + name + "! The Lucky Number was" + lucky + "!";
+                        document.getElementById("result").style.color = "green";
+                    } else { 
+                        document.getElementById("result").textContent = "So close," + name + "! The Lucky Number was" + lucky + ". Try Again!";
+                        document.getElementById("result").style.color = "navy";
+
+                    }
+                }
+
+            }
+        
+            
+        </script>
+     </body>
+</html>
