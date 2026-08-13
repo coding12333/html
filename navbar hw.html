@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start and Stop Numbers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #number-display {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="number-display">0</div>
+    
+    <button id="start-btn">Start</button>
+    <button id="stop-btn">Stop</button>
+    <button id="reset-btn">Reset</button>
+
+    <script>
+        let count = 0;
+        let timerId = null;
+
+        const display = document.getElementById("number-display");
+        const startBtn = document.getElementById("start-btn");
+        const stopBtn = document.getElementById("stop-btn");
+        const resetBtn = document.getElementById("reset-btn");
+
+        // Start counting every 1 second (1000 milliseconds)
+        startBtn.addEventListener("click", function() {
+            if (timerId === null) {
+                timerId = setInterval(function() {
+                    count++;
+                    display.textContent = count;
+                }, 1000);
+            }
+        });
+
+        // Stop the counter
+        stopBtn.addEventListener("click", function() {
+            clearInterval(timerId);
+            timerId = null;
+        });
+
+        // Reset the counter back to zero
+        resetBtn.addEventListener("click", function() {
+            clearInterval(timerId);
+            timerId = null;
+            count = 0;
+            display.textContent = count;
+        });
+    </script>
+
+</body>
+</html>
